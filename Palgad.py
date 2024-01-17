@@ -6,22 +6,64 @@ inimesed=["A","B","C","D","E"]
 
 option = str
 
-def multple():
-    x = 0
+def multiple():
+    c = 0
+    n = []
+    NewList = []
+
+    for x in set(inimesed):
+        NewList.append(x)
+
+    NewList.sort()
+
+    while (True):
+        option = str(input("Who to pick: "))
+        if option in NewList:
+            break
+        else:
+            print("that name does not exits")
+
     while True:
-    try:
-        index = name.index("d",x)
-        n.append(index)
-        x = index + 1
-    except:
-        break
+        try:
+            index = inimesed.index(option, c)
+            n.append(index)
+            c = index + 1
+        except:
+            break
+    
+    for x in range(len(n)):
+        print(f" {x+1} {inimesed[n[x]]} {palgad[n[x]]} ")
+    
+    print()
+    
+    if ( len(n) >> 1 ):
+        pick = int(input("pick what to remove: "))-1
+        answer = n[pick]
+    elif ( len(n) == 1 ):
+        answer = n[0]
+    
+    return answer
 
 def menu():
-    print("A = Add")
-    print("R = Remove")
-    print("B = Biggest salary")
-    print("S = smallest salary")
-    print("H = who same salary")
+    print("A = Add") #1
+    print("R = Remove") #2 
+    print("B = Biggest salary") #3
+    print("S = smallest salary") #5 
+    print(" = ") #5
+    print(" = ") #6
+    print(" = ") #7
+    print(" = ") #8
+    print(" = who receive more/less than the specified amount.") #8
+    print(" = Show the richest person and poorest perspn") #9
+    print(" = ") #10
+    print(" = Calculate the salary that a person will receive in hand after calculating income tax") #11
+    print(" = ") #12
+    print(" = ") #13
+    print(" = ") #14
+    print(" = ") #15
+    print(" = ") #16
+    print(" = ") #17
+    print(" = starting with the entered letter and their salaries") #18
     print("Q = Quit")
 
     print()
@@ -30,39 +72,66 @@ def AddPeople():
     people = str(input("give name: "))
     salary = int(input("give money: "))
 
-    palgad.append(people)
-    inimesed.append(salary)
-
+    inimesed.append(people)
+    palgad.append(salary)
+    
 #2
 def RemovePeople():
     for i in range(len(inimesed)):
         print(f"{i+1}: {inimesed[i]}-{palgad[i]}")
 
-    while(True):
-        op = str(input("op: "))
-        try:
-            index = inimesed.index(op)
-            inimesed.pop(index)
-            palgad.pop(index)
-            break
-        except:
-            print("that does not exits")
-            pass
-               
+    inimesed.pop(multiple())
+
     print()
 
 #3
 def BiggestSalary():
-    index = palgad.index(max(palgad))
-    print("The richest")
-    print(f"{inimesed[index]} - {palgad[index]}")
+    print("Riches")
+    NewList = []
+    n = []
+    c = 0
+
+    for x in set(palgad):
+        NewList.append(x)
+    
+    NewList.sort()
+
+    while True:
+        try:
+            index = palgad.index(NewList[-1], c)
+            n.append(index)
+            c = index + 1
+        except:
+            break
+
+    for x in range(len(n)):
+        print(f"{x+1}: {inimesed[n[x]]}, {palgad[n[x]]}")
+
     print()
 
 #4
 def SmallSalery():
-    index = palgad.index(min(palgad))
-    print("The poorest")
-    print(f"{inimesed[index]} - {palgad[index]}")
+    print("poorest")
+    NewList = []
+    n = []
+    c = 0
+
+    for x in set(palgad):
+        NewList.append(x)
+    
+    NewList.sort()
+
+    while True:
+        try:
+            index = palgad.index(NewList[0], c)
+            n.append(index)
+            c = index + 1
+        except:
+            break
+
+    for x in range(len(n)):
+        print(f"{x+1}: {inimesed[n[x]]}, {palgad[n[x]]}")
+
     print()
 
 #5
@@ -88,7 +157,8 @@ def MoreOrLess():
 def TopOfAll(): 
     BiggestSalary()
     SmallSalery()
-    
+
+    print()
 #10
 
 #11
@@ -106,7 +176,8 @@ def tulemaks():
     for i in range(len(palgad)):
         print(f"{inimesed[i]}-{n[i]}")
         print(f"{inimesed[i]}-{palgad[i]}")
-
+    
+    print()
 
 #12
 #13
@@ -114,15 +185,16 @@ def tulemaks():
 #15
 #16
 #17
-
 #18
 def FindAletterStart():
-    char = str(input(("less or more: ")))
-    for i in range(len(inimesed)):
-        if (char[0].lower() == "a"):
-            print(f"{inimesed[i]}-{palgad[i]}")
-
-
+    x=0
+    letter = str(input(("1 char: ")))
+    
+    for i in inimesed:
+        if i[0].lower() == letter:
+            print(f"{i}-{palgad[x]}")
+        x+=1
+    print()
 
 while (True):
     menu()
@@ -130,6 +202,7 @@ while (True):
 
     match option.upper():
         case "Q":
+            print("BYE")
             exit()
         case "A":
             AddPeople()
@@ -142,7 +215,6 @@ while (True):
         case "M":
             MoreOrLess()
         case "TEST":
-            tulemaks()
+            FindAletterStart()
         case _ :
             print("unvalid option")
-
