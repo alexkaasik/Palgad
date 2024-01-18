@@ -56,7 +56,7 @@ def menu():
     print(" = ") #7
     print(" = who receive more/less than the specified amount.") #8
     print(" = Show the richest person and poorest perspn") #9
-    print(" = ") #10
+    print(" = Average salary and the name") #10
     print(" = Calculate the salary that a person will receive in hand after calculating income tax") #11
     print(" = ") #12
     print(" = salary below average and remove them from the lists") #13
@@ -185,7 +185,7 @@ def keskmine():
     f = price/len(palgad)
 
     for x in range(len(palgad)):
-        if f > palgad[x]:
+        if f-(f*0,10) << palgad[x] << f*0.10:
             print(f"{inimesed[x]}-{palgad[x]}")
 
 #11
