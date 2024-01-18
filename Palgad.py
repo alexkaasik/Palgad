@@ -45,22 +45,23 @@ def multiple():
     return answer
 
 def menu():
+    print()
+    print()
     print("A = Add") #1
     print("R = Remove") #2 
     print("B = Biggest salary") #3
-    print("S = smallest salary") #5 
+    print("S = smallest salary") #4 
     print(" = ") #5
-    print(" = ") #6
+    print(" = Find out who receives the same salary") #6
     print(" = ") #7
-    print(" = ") #8
     print(" = who receive more/less than the specified amount.") #8
     print(" = Show the richest person and poorest perspn") #9
     print(" = ") #10
     print(" = Calculate the salary that a person will receive in hand after calculating income tax") #11
     print(" = ") #12
-    print(" = ") #13
+    print(" = salary below average and remove them from the lists") #13
     print(" = ") #14
-    print(" = ") #15
+    print(" = Every year the companies employees salaries are raised by 5%") #15
     print(" = ") #16
     print(" = ") #17
     print(" = starting with the entered letter and their salaries") #18
@@ -74,6 +75,7 @@ def AddPeople():
 
     inimesed.append(people)
     palgad.append(salary)
+    print()
     
 #2
 def RemovePeople():
@@ -81,8 +83,6 @@ def RemovePeople():
         print(f"{i+1}: {inimesed[i]}-{palgad[i]}")
 
     inimesed.pop(multiple())
-
-    print()
 
 #3
 def BiggestSalary():
@@ -107,8 +107,6 @@ def BiggestSalary():
     for x in range(len(n)):
         print(f"{x+1}: {inimesed[n[x]]}, {palgad[n[x]]}")
 
-    print()
-
 #4
 def SmallSalery():
     print("poorest")
@@ -132,12 +130,32 @@ def SmallSalery():
     for x in range(len(n)):
         print(f"{x+1}: {inimesed[n[x]]}, {palgad[n[x]]}")
 
-    print()
-
 #5
 #6
-#7
+def SameSalary():
 
+    NewList = []
+
+    for x in set(palgad):
+        NewList.append(x)
+
+    NewList.sort()
+    
+    for x in range(len(NewList)):
+        c = 0
+        n = []
+        while ( palgad.count(NewList[x]) >> 1):
+            try:
+                index = palgad.index(NewList[x], c)
+                n.append(index)
+                c = index + 1
+            except:
+                break
+            
+        for xy in n:
+            print(f"{inimesed[xy]} {palgad[xy]}")
+
+#7
 #8
 def MoreOrLess():
     lm = str(input(("less or more: ")))
@@ -151,7 +169,6 @@ def MoreOrLess():
             print(f"{inimesed[i]}-{palgad[i]}")
         else:
             continue
-    print()
 
 #9
 def TopOfAll(): 
@@ -160,6 +177,16 @@ def TopOfAll():
 
     print()
 #10
+def keskmine():
+    price = float()
+    for x in palgad:
+        price+=x
+    
+    f = price/len(palgad)
+
+    for x in range(len(palgad)):
+        if f > palgad[x]:
+            print(f"{inimesed[x]}-{palgad[x]}")
 
 #11
 def tulemaks():
@@ -176,13 +203,30 @@ def tulemaks():
     for i in range(len(palgad)):
         print(f"{inimesed[i]}-{n[i]}")
         print(f"{inimesed[i]}-{palgad[i]}")
-    
-    print()
 
 #12
 #13
+def RA():
+    price = float()
+    for x in palgad:
+        price+=x
+    
+    f = price/len(palgad)
+    for x in range(len(palgad),0,-1):
+        if f < palgad[x]:
+            inimesed.pop[x] 
+            palgad.pop[x]
+
 #14
 #15
+def YearRaised():
+    per = 1.05
+    year = int(input("yaer: "))
+    for x in range(year):
+        print(f"{x+1}y")
+        for i in range(len(inimesed)):
+            print(f"{inimesed[i]} { round(palgad[i]*per,2) }")
+        per*=1.05
 #16
 #17
 #18
@@ -194,7 +238,6 @@ def FindAletterStart():
         if i[0].lower() == letter:
             print(f"{i}-{palgad[x]}")
         x+=1
-    print()
 
 while (True):
     menu()
@@ -215,6 +258,6 @@ while (True):
         case "M":
             MoreOrLess()
         case "TEST":
-            FindAletterStart()
+            SameSalary()
         case _ :
             print("unvalid option")
